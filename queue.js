@@ -161,5 +161,7 @@
   console.log(roundQ.size());
   roundQ.queueRounds(3);
   console.log(roundQ.size());
+  roundQ.queueRounds(8);
+  console.log(roundQ.size());
 
 }());
