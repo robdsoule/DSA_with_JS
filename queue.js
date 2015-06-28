@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  //Queue, FIFO(First in First Out)
+  //return the methods in an object that access the line and number via closure
   function Queue() {
     var theLine = [],
       numberInQueue = 0;

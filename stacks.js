@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  //create a Stack 'class' with methods
+  //create a Stack 'class' with methods, LIFO (Last in First Out)
+  //using this for the methods
   function Stack() {
     var theStack = [];
 
@@ -41,6 +42,8 @@
 
   }
 
+  //this takes a Decimal based number, and returns a string of the Binary
+  //equivalent
   function decToBinary(num) {
     var binHoldArr = new Stack(),
       binString = "",
