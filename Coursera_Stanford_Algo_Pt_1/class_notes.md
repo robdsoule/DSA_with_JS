@@ -16,7 +16,7 @@ Day 1
 *  Primitives for reasoning about graphs
   - Connectivity information, shortest paths, structure of information and social networks
 *  Use and implementation of data structures
-  - Heaps, balanced binary search trees, hashing and some variants (e.g., bloom filters)
+  - Heaps, balanced binary search trees, hashing, and some variants (e.g., bloom filters)
 
 ___
 ### Integer Multiplications
