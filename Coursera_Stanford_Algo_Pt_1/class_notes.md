@@ -54,7 +54,7 @@ y = 1234     c=12  d=34
 - Write: x = 10^n/2 * a + b  and y = 10^n/2 * c + d
 -   where a,b,c,d are n/2 - digit numbers.
 - Then: x * y = (10^n/2 * a + b) * (10^n/2 * c + d)
--             = 10^n * ac + 10^n/2(ad + bc) + bd
+- x * y = 10^n * ac + 10^n/2(ad + bc) + bd
 - Idea: recursively compute ac, ad, bc, bd, then compute in straightforward way
 - Base Case single digit numbers multiplied together
 
