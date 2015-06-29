@@ -64,18 +64,18 @@ ___
 ##### Proof Of Claim(assuming n = power of 2):
 - using 'recursion tree'
 - level 0: outer call to mergesort-- root o (entire input)
--                                     /   \
--                                    /     \
+- ..................................../   \
+- .................................../     \
 - level 1: 1st recursive calls     left | right
--                                 /   \ | /    \
+- ................................/   \ | /    \
 - level 2: 2nd recursive calls   L     R|L      R
--                                .     . .      .
--                                .     . .      .
--                                .     . .      .
+- ...............................:     : :      :
+- ...............................:     : :      :
+- ...............................:     : :      :
 - level log2(n):       (leaves) o o  o o o o   o o
 
 - At each level, there are 2^j sub-problems with n/(2^j) items in each sub-problem
 
 - <= 2^j+6(n / 2^j) =  6n (independent of j)
--    ^---------^ cancels out when reducing
+- ...^---------^ cancels out when reducing
 - Total:  6n(log2(n))+6n
