@@ -91,3 +91,51 @@ y = 1234     c=12  d=34
 - <= 2^j+6(n / 2^j) =  6n (independent of j)
 - ...^---------^ cancels out when reducing
 - Total:  6n(log2(n))+6n
+
+___
+___
+### Asymptotic Analysis
+#### The Gist
+- Importance: vocab for the design and analysis of algorithms (e.g., 'big-oh' notation)
+- sharp enough to make useful comparisons between different algorithms especially on large inputs
+- High-level Idea: suppress constant factors and lower-order terms.
+- constant factors - too system dependent
+- lower-order terms - irrelevant for large inputs
+Example: equate 6nlog2n + 6n would be just nlogn
+
+Terminology: running time is O(nlog(n)) where n = input size(e.g. length)
+
+##### Example: One Loop
+- Problem: does array A contain the integer t?
+  *  given A (array of length n)
+  *  and t (an integer)
+  *  for i = 1 to n
+  *  if A[i] == t return TRUE
+  *  return FALSE
+- Question: what is the running time?
+  *  Answer: O(n)
+
+##### Example: Two Loops
+- Problem: given A,B (arrays of length n) and t an integer
+  *  Running time: O(n) as well, twice as many operations but still same due to it being a constant(2)
+
+##### Example: Nested Loops
+- Problem: do arrays A,B have a number in common?
+  * given arrays A,B of length n
+  * for i = 1 to n
+  *   for j = 1 to n
+  * if A[i] === B[j] return TRUE
+  * return TRUE
+- Question: What is the running time?
+  * Answer: O(n^2), quadratic running time
+
+##### Example: Two Nested Loops (II)
+- Problem: does array A have duplicate entries?
+  * given array A of length n
+  * for i = 1 to n
+  * for j = i+1 to n
+  * if A[i] === A[j] return TRUE
+  * return FALSE
+- Question: What is the running time?
+  * Answer: O(n^2), quadratic running time because the inner for loop runs for ever iteration of outer loop
+  * more specifically this is n^2 / 2  but constant is a non factor
