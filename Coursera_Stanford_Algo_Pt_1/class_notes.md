@@ -56,8 +56,9 @@ y = 1234     c=12  d=34
 - Then: x * y = (10^n/2 * a + b) * (10^n/2 * c + d)
 -             = 10^n * ac + 10^n/2(ad + bc) + bd
 - Idea: recursively compute ac, ad, bc, bd, then compute in straightforward way
-- Base Case: single digit numbers multiplied together
-___
+- Base Case single digit numbers multiplied together
+
+
 ### Merge Sort
 #### Pseudocode
 - Recursively sort 1st half of input array
