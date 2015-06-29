@@ -99,7 +99,7 @@
   //'Hot Potato' Queue, will iterate through the Q for x amount of rounds,
   //remove front of the Queue, add to the end, on completion of round count
   //the first item will be removed from the Queue
-  function CircularQueue () {
+  function CircularQueue() {
     var theList = [],
       lengthOfCircQ = 0;
 
