@@ -17,7 +17,7 @@ Day 1
   - Connectivity information, shortest paths, structure of information and social networks
 *  Use and implementation of data structures
   - Heaps, balanced binary search trees, hashing and some variants (e.g., bloom filters)
-___
+
 ___
 ### Integer Multiplications
 Input: two n-digit numbers x and y.
