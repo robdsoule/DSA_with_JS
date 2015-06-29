@@ -1,10 +1,4 @@
-Day 1
-====
-### Why Study Algorithms
-- key role in modern technological innovation
-- novel 'lens' on processes outside of computer scient and technology
-- challenging
-- important for all branches of computer science
+# Day 1
 
 ## Course Topics
 *  Vocab, mainly 'Big-Oh'
@@ -18,6 +12,21 @@ Day 1
 *  Use and implementation of data structures
   - Heaps, balanced binary search trees, hashing, and some variants (e.g., bloom filters)
 
+### Why Study Algorithms
+- key role in modern technological innovation
+- novel 'lens' on processes outside of computer scient and technology
+- challenging
+- important for all branches of computer science
+
+### Guiding Principles
+1. Worst-Case Running
+2. Not focusing on Constant factors / lower level terms
+3. Focus on rate of growth for large problem sizes
+
+#### What is a fast algorithm?
+fast algorithm ~ worst-case running, time grows slowly with input size
+
+holy grail: linear running time
 ___
 ### Integer Multiplications
 Input: two n-digit numbers x and y.
