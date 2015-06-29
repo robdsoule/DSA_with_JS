@@ -21,10 +21,12 @@ Day 1
 ___
 ### Integer Multiplications
 Input: two n-digit numbers x and y.
+
 Output: the product x * y
 
 #### Karatsuba Multiplication
 x = 5678     a=56  b=78
+
 y = 1234     c=12  d=34
 - Step 1: a * c = 672
 - Step 2: b * d = 2652
@@ -40,13 +42,12 @@ y = 1234     c=12  d=34
 - only need 3 recursive multiplication calls and some addition
 
 #### Recursive Algorithm
-Write: x = 10^n/2 * a + b  and y = 10^n/2 * c + d
-  where a,b,c,d are n/2 - digit numbers.
-Then: x * y = (10^n/2 * a + b) * (10^n/2 * c + d)
-            = 10^n * ac + 10^n/2(ad + bc) + bd
-Idea: recursively compute ac, ad, bc, bd, then compute in straightforward way
-Base Case: single digit numbers multiplied together
-___
+- Write: x = 10^n/2 * a + b  and y = 10^n/2 * c + d
+-   where a,b,c,d are n/2 - digit numbers.
+- Then: x * y = (10^n/2 * a + b) * (10^n/2 * c + d)
+-             = 10^n * ac + 10^n/2(ad + bc) + bd
+- Idea: recursively compute ac, ad, bc, bd, then compute in straightforward way
+- Base Case: single digit numbers multiplied together
 ___
 ### Merge Sort
 #### Pseudocode
@@ -61,20 +62,20 @@ ___
 - Running time of merge on array of m numbers is: <= 4m + 2 reduce to 6m 'close enough'
 - Claim: merge sort requires <= 6n*log2(n) + 6n operations to sort n numbers
 ##### Proof Of Claim(assuming n = power of 2):
-using 'recursion tree'
-level 0: outer call to mergesort-- root o (entire input)
-                                    /   \
-                                   /     \
-level 1: 1st recursive calls     left | right
-                                /   \ | /    \
-level 2: 2nd recursive calls   L     R|L      R
-                               .     . .      .
-                               .     . .      .
-                               .     . .      .
-level log2(n):       (leaves) o o  o o o o   o o
+- using 'recursion tree'
+- level 0: outer call to mergesort-- root o (entire input)
+-                                     /   \
+-                                    /     \
+- level 1: 1st recursive calls     left | right
+-                                 /   \ | /    \
+- level 2: 2nd recursive calls   L     R|L      R
+-                                .     . .      .
+-                                .     . .      .
+-                                .     . .      .
+- level log2(n):       (leaves) o o  o o o o   o o
 
-At each level, there are 2^j sub-problems with n/(2^j) items in each sub-problem
+- At each level, there are 2^j sub-problems with n/(2^j) items in each sub-problem
 
-<= 2^j+6(n / 2^j) =  6n (independent of j)
-    ^---------^ cancels out when reducing
-Total:  6n(log2(n))+6n
+- <= 2^j+6(n / 2^j) =  6n (independent of j)
+-    ^---------^ cancels out when reducing
+- Total:  6n(log2(n))+6n
