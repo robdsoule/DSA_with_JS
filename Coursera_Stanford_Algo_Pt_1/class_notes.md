@@ -68,9 +68,11 @@ y = 1234     c=12  d=34
   *  base case
   *  odd input array
   *  check when you drop off 1st or 2nd array on the merge step
+
 #### RUNNING TIME:
 - Running time of merge on array of m numbers is: <= 4m + 2 reduce to 6m 'close enough'
 - Claim: merge sort requires <= 6n*log2(n) + 6n operations to sort n numbers
+
 ##### Proof Of Claim(assuming n = power of 2):
 - using 'recursion tree'
 - level 0: outer call to mergesort-- root o (entire input)
