@@ -1,20 +1,27 @@
 (function () {
   "use strict";
 
-  var fs = require('fs'), test1, bigList,
-    numArr = fs.readFileSync('IntegerArray.txt').toString().split(/\r\n/);
-  // takes the txt file of #'s converts it to a string, splits it on \r\n
+  var fs = require('fs'), test1, bigList;
 
-  // filters the array removing any blank spaces(when parsing was getting 2
-  // ''entries
-  numArr = numArr.filter(function (item) {
-    return !!item;
-  });
 
-  // converts all items in the array to a number with the + unary operator
-  numArr = numArr.map(function (curr) {
-    return +curr;
-  });
+  function parseTXTnumList(fileName, splitRegEx) {
+    var outArray;
+
+    splitRegEx = splitRegEx || /\n/;
+    // takes the txt file of #'s converts it to a string, splits it on \r\n
+    outArray = fs.readFileSync(fileName).toString().split(splitRegEx);
+    // filters the array removing any blank spaces(when parsing was getting 2
+    // ''entries
+    outArray = outArray.filter(function (item) {
+      return !!item;
+    });
+    // converts all items in the array to a number with the + unary operator
+    outArray = outArray.map(function (curr) {
+      return +curr;
+    });
+
+    return outArray;
+  }
 
   // takes the split arrays and merges them while keeping a counter of inversions
   function mergeAndCount(leftArr, rightArr) {
@@ -91,7 +98,7 @@
 
   test1 = divideAndConquer([9, 12, 3, 1, 6, 8, 2, 5, 14,
                                 13, 11, 7, 10, 4, 0]);
-  bigList = divideAndConquer(numArr);
+  bigList = divideAndConquer(parseTXTnumList('IntegerArray.txt', /\r\n/));
   console.log('Sorted Arr:', bigList.list,
               '# of Inversions:', bigList.inversion);
   console.log('Sorted Arr:', test1.list,
