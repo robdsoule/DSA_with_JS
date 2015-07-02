@@ -1,4 +1,4 @@
-# Day 1
+# Week 1
 
 ## Course Topics
 *  Vocab, mainly 'Big-Oh'
@@ -58,7 +58,7 @@ y = 1234     c=12  d=34
 - Idea: recursively compute ac, ad, bc, bd, then compute in straightforward way
 - Base Case single digit numbers multiplied together
 
-
+___
 ### Merge Sort
 #### Pseudocode
 - Recursively sort 1st half of input array
@@ -92,7 +92,6 @@ y = 1234     c=12  d=34
 - ...^---------^ cancels out when reducing
 - Total:  6n(log2(n))+6n
 
-___
 ___
 ### Asymptotic Analysis
 #### The Gist
