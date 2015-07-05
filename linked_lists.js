@@ -69,9 +69,40 @@
       return removedElement;
     };
 
-    //TODO add an insert method that takes a zero based position
-    this.insert = function (value) {
+    this.getHead = function () {
+      return head;
+    }
 
+    this.insert = function (element, position) {
+      var node, previous, current, indexNum, eleInserted;
+      eleInserted = false;
+      indexNum = 0;
+
+      if (position >= 0 && position <= length) {
+        node = new Node(element);
+        current = head;
+
+        if (position === 0) {
+          node.next = current;
+          head = node;
+          eleInserted = true;
+          length += 1;
+        } else {
+
+          while (indexNum < position) {
+            previous = current;
+            current = current.next;
+            indexNum += 1;
+          }
+
+          node.next = current;
+          previous.next = node;
+          eleInserted = true;
+          length += 1;
+        }
+      }
+
+      return eleInserted;
     };
 
     this.toString = function () {
@@ -104,6 +135,7 @@
       try {
         if (element === head.element) {
           indexCount = 0;
+          eleFound = true;
         } else {
           current = head;
           while (current && !eleFound) {
@@ -137,13 +169,19 @@
   var aLinkedList = new LinkedList(),
     anotherLinkedList = new LinkedList();
 
+  anotherLinkedList.insert('Doot0', 0);
+  anotherLinkedList.insert('Doots', 1);
   console.log(anotherLinkedList.toString());
 
   aLinkedList.append('Item1');
   aLinkedList.append('Item2');
   aLinkedList.append('Item3');
-  console.log('Index of Item 2:', aLinkedList.indexOf('Item4'));
-  //aLinkedList.removeAt(2);
+  aLinkedList.insert('Nanner', 0);
+  console.log(aLinkedList.getHead());
+  console.log('Index of Nanner:', aLinkedList.indexOf('Nanner'));
+  console.log('Index of Item2:', aLinkedList.indexOf('Item2'));
+  console.log('Index of Item 4:', aLinkedList.indexOf('Item4'));
+  aLinkedList.removeAt(2);
   console.log(aLinkedList.toString());
   console.log(aLinkedList);
 }());
