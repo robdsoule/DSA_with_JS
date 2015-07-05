@@ -70,19 +70,80 @@
     };
 
     //TODO add an insert method that takes a zero based position
-    //TODO toString method that prints the list out in an orderly manner
-    //TODO indexOf method that returns the index of a given element
-    //TODO isEmpty method
-    //TODO size method
+    this.insert = function (value) {
 
+    };
+
+    this.toString = function () {
+      var current, output, incr;
+      output = '';
+      incr = 0;
+
+      if (head === null) {
+        output += 'NULL';
+      } else {
+        current = head;
+        while (current.next) {
+          incr += 1;
+          output += 'Item ' + incr + ': ' + current.element + '\n';
+          current = current.next;
+        }
+        incr += 1;
+        output += 'Item ' + incr + ': ' + current.element;
+      }
+
+      output += '\n---------\nEnd List';
+      return output.trim();
+    };
+
+    this.indexOf = function (element) {
+      var current, indexCount, eleFound;
+      indexCount = 0;
+      eleFound = false;
+
+      try {
+        if (element === head.element) {
+          indexCount = 0;
+        } else {
+          current = head;
+          while (current && !eleFound) {
+            indexCount += 1;
+            if (current.element === element) {
+              eleFound = true;
+            }
+            current = current.next;
+          }
+        }
+        if (eleFound === false) {
+          throw "Error: " + element + " - not in list";
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      return indexCount;
+    };
+
+    this.isEmpty = function () {
+      return length === 0;
+    };
+
+    this.size = function () {
+      return length;
+    };
 
   }
 
-  var aLinkedList = new LinkedList();
+  var aLinkedList = new LinkedList(),
+    anotherLinkedList = new LinkedList();
+
+  console.log(anotherLinkedList.toString());
 
   aLinkedList.append('Item1');
   aLinkedList.append('Item2');
   aLinkedList.append('Item3');
-  aLinkedList.removeAt(2);
+  console.log('Index of Item 2:', aLinkedList.indexOf('Item4'));
+  //aLinkedList.removeAt(2);
+  console.log(aLinkedList.toString());
   console.log(aLinkedList);
 }());
