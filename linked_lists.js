@@ -53,14 +53,19 @@
         if (position === 0) {
           head = current.next;
         } else {
+          // iterates through the list until index and position numbers match
           while (index < position) {
             index += 1;
             previous = current;
             current = current.next;
           }
+          // once while loop has exited relink .next of the previous node to the
+          // node after the current element being removed
           previous.next = current.next;
         }
         length -= 1;
+        // set removedElement for a singular return statement, edit length to
+        // account for removed element
         removedElement = current.element;
       } else {
         removedElement = null;
@@ -71,35 +76,50 @@
 
     this.getHead = function () {
       return head;
-    }
+    };
 
     this.insert = function (element, position) {
       var node, previous, current, indexNum, eleInserted;
       eleInserted = false;
       indexNum = 0;
 
-      if (position >= 0 && position <= length) {
-        node = new Node(element);
-        current = head;
+      // check that the position is valid number within 0 and total length of
+      // the list
+      try {
+        if (position >= 0 && position <= length) {
+          node = new Node(element);
+          current = head;
 
-        if (position === 0) {
-          node.next = current;
-          head = node;
-          eleInserted = true;
-          length += 1;
-        } else {
+          if (position === 0) {
+            // if adding to front of list assign node.next to current head
+            // set elementInserted as true and increase length
+            node.next = current;
+            head = node;
+            eleInserted = true;
+            length += 1;
+          } else {
 
-          while (indexNum < position) {
-            previous = current;
-            current = current.next;
-            indexNum += 1;
+            // this will run until indexNum is equal to desired position, cycling
+            // through the Node's keeping record of previous node and current
+            while (indexNum < position) {
+              previous = current;
+              current = current.next;
+              indexNum += 1;
+            }
+
+            // once desired position is met, node.next is set to current, and
+            // previous node's .next pointer is assigned to our inserted node,
+            // effectively inserting the element
+            node.next = current;
+            previous.next = node;
+            eleInserted = true;
+            length += 1;
           }
-
-          node.next = current;
-          previous.next = node;
-          eleInserted = true;
-          length += 1;
+        } else {
+          throw 'Invalid position to insert at.';
         }
+      } catch (err) {
+        console.log(err);
       }
 
       return eleInserted;
@@ -132,6 +152,8 @@
       indexCount = 0;
       eleFound = false;
 
+      // very similar logic as used in insert, but just simply is keeping track
+      // of index position and returning it
       try {
         if (element === head.element) {
           indexCount = 0;
