@@ -85,41 +85,35 @@
 
       // check that the position is valid number within 0 and total length of
       // the list
-      try {
-        if (position >= 0 && position <= length) {
-          node = new Node(element);
-          current = head;
+      if (position >= 0 && position <= length) {
+        node = new Node(element);
+        current = head;
 
-          if (position === 0) {
-            // if adding to front of list assign node.next to current head
-            // set elementInserted as true and increase length
-            node.next = current;
-            head = node;
-            eleInserted = true;
-            length += 1;
-          } else {
-
-            // this will run until indexNum is equal to desired position, cycling
-            // through the Node's keeping record of previous node and current
-            while (indexNum < position) {
-              previous = current;
-              current = current.next;
-              indexNum += 1;
-            }
-
-            // once desired position is met, node.next is set to current, and
-            // previous node's .next pointer is assigned to our inserted node,
-            // effectively inserting the element
-            node.next = current;
-            previous.next = node;
-            eleInserted = true;
-            length += 1;
-          }
+        if (position === 0) {
+          // if adding to front of list assign node.next to current head
+          // set elementInserted as true and increase length
+          node.next = current;
+          head = node;
+          eleInserted = true;
+          length += 1;
         } else {
-          throw 'Invalid position to insert at.';
+
+          // this will run until indexNum is equal to desired position, cycling
+          // through the Node's keeping record of previous node and current
+          while (indexNum < position) {
+            previous = current;
+            current = current.next;
+            indexNum += 1;
+          }
+
+          // once desired position is met, node.next is set to current, and
+          // previous node's .next pointer is assigned to our inserted node,
+          // effectively inserting the element
+          node.next = current;
+          previous.next = node;
+          eleInserted = true;
+          length += 1;
         }
-      } catch (err) {
-        console.log(err);
       }
 
       return eleInserted;
@@ -154,25 +148,18 @@
 
       // very similar logic as used in insert, but just simply is keeping track
       // of index position and returning it
-      try {
-        if (element === head.element) {
-          indexCount = 0;
-          eleFound = true;
-        } else {
-          current = head;
-          while (current && !eleFound) {
-            indexCount += 1;
-            if (current.element === element) {
-              eleFound = true;
-            }
-            current = current.next;
+      if (element === head.element) {
+        indexCount = 0;
+        eleFound = true;
+      } else {
+        current = head;
+        while (current && !eleFound) {
+          indexCount += 1;
+          if (current.element === element) {
+            eleFound = true;
           }
+          current = current.next;
         }
-        if (eleFound === false) {
-          throw "Error: " + element + " - not in list";
-        }
-      } catch (err) {
-        console.log(err);
       }
 
       return indexCount;
