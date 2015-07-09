@@ -28,6 +28,7 @@
         }
         node.previous = current;
         current.next = node;
+        tail = node;
       }
       length += 1;
 
@@ -95,6 +96,9 @@
           previous.next = node;
           node.previous = previous;
           wasInserted = true;
+          if (position === length) {
+            tail = node;
+          }
           length += 1;
         }
       }
@@ -145,6 +149,10 @@
       return head;
     };
 
+    this.getTail = function () {
+      return tail;
+    };
+
     this.isEmpty = function () {
       return length === 0;
     };
@@ -160,12 +168,15 @@
   twoWayList.append('Item1');
   twoWayList.append('Item2');
   twoWayList.append('Item3');
+  console.log(twoWayList.getTail());
   console.log(twoWayList.removeAt(2));
   twoWayList.insertAt('Inserted Elem', 0);
   twoWayList.insertAt('Another Inserted Ele', 3);
+  console.log(twoWayList.getTail());
   console.log(twoWayList.indexOf('Another Inserted Ele'));
   console.log(twoWayList.indexOf('Shouldnt be here'));
   console.log(twoWayList.getHead());
+  console.log(twoWayList.getTail());
   console.log(twoWayList.toString());
 
 }());
