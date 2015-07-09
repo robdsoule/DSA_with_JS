@@ -2,10 +2,11 @@
   "use strict";
 
   function BiDirectionList() {
-    var length, head, Node;
+    var length, head, tail, Node;
 
     length = 0;
     head = null;
+    tail = null;
 
     Node = function Node(element) {
       this.element = element;
