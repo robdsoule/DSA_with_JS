@@ -15,26 +15,23 @@
     length = 0;
 
     this.append = function (element) {
-      var index, current, node;
+      var current, node;
 
-      index = 0;
       node = new Node(element);
-      current = head;
-      if (!head) {
+      if (head === null) {
         head = node;
-        tail = node;
-        length += 1;
       } else {
-        while (index < length) {
+        current = head;
+        while (current.next && current.next !== head) {
           current = current.next;
-          index += 1;
         }
         node.prev = current;
-        node.next = head;
         current.next = node;
-        length += 1;
         tail = node;
+        tail.next = head;
+        head.prev = tail;
       }
+      length += 1;
 
     };
 
@@ -47,4 +44,5 @@
   hotPotato.append('Rob1');
   hotPotato.append('Rob2');
   hotPotato.append('Rob3');
+  console.log(hotPotato.getHead());
 }());
