@@ -90,14 +90,34 @@
       }
     };
 
-    //this.removeAt = function (position) {
-    //  var current, previous, index, removedEle;
-    //  index = 0;
-    //
-    //  if (position > -1 && position < length) {
-    //
-    //  }
-    //};
+    this.removeAt = function (position) {
+      var current, future, previous, index, removedEle;
+      index = 0;
+      current = head;
+
+      if (position > -1 && position < length) {
+        if (position === 0) {
+          head = current.next;
+          head.prev = tail;
+          tail.next = head;
+        } else if (position === length - 1) {
+          previous = tail.prev;
+          previous.next = head;
+          tail = previous;
+          head.prev = tail;
+        } else {
+          while (index < position) {
+            previous = current;
+            current = current.next;
+            index += 1;
+          }
+          future = current.next;
+          future.prev = previous;
+          previous.next = future;
+        }
+        length -= 1;
+      }
+    };
 
     this.size = function () {
       return length;
@@ -123,6 +143,7 @@
   hotPotato.insertAt(3, 'Nanner');
   hotPotato.insertAt(1, 'Test');
   hotPotato.insertAt(0, 'Begin');
+  hotPotato.removeAt(4);
   console.log(hotPotato.getHead());
   console.log('Index Of: ',
               hotPotato.indexOf('Rob3'),
