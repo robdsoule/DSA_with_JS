@@ -96,6 +96,7 @@ At each level, there are 2^j sub-problems with n/(2^j) items in each sub-problem
 <= 2^j+6(n / 2^j) =  6n (independent of j)
 ...^---------^ cancels out when reducing
 Total:  6n(log2(n))+6n
+
 ```
 
 ___
