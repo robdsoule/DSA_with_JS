@@ -9,14 +9,25 @@
     items = {};
 
     return {
-      //TODO add a value to the set if it doesn't already exist, return true if added
+      // add a value to the set if it doesn't already exist, return true if
+      // added
       add: function(value) {
-
+        var added = false;
+        if (!this.has(value)) {
+          items[value] = value;
+          added = true;
+        }
+        return added;
       },
 
-      //TODO remove a value from the set if it exists, return true if removed
+      // remove a value from the set if it exists, return true if removed
       remove: function(value) {
-
+        var deleted = false;
+        if (this.has(value)) {
+          delete items[value];
+          deleted = true;
+        }
+        return deleted;
       },
 
       // returns true if the value exists in the set
@@ -34,9 +45,9 @@
         return Object.keys(items).length();
       },
 
-      //TODO values returns an array with all values in the set
+      // values returns an array with all values in the set
       values: function() {
-
+        return Object.keys(items);
       },
 
       //TODO union returns a new set with all items from set and otherSet
@@ -61,4 +72,13 @@
 
     }
   };
+
+  var setA = new Set();
+  setA.add('Hi');
+  setA.add('Bye');
+  setA.add('Nanner');
+  console.log(setA.values());
+  setA.remove('Lol');
+  setA.remove('Bye');
+  console.log(setA.values());
 }());
