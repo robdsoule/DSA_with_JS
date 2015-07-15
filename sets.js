@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  var Set;
+  var Set, setA;
 
-  Set = function() {
+  Set = function () {
     var items;
 
     items = {};
@@ -11,7 +11,7 @@
     return {
       // add a value to the set if it doesn't already exist, return true if
       // added
-      add: function(value) {
+      add: function (value) {
         var added = false;
         if (!this.has(value)) {
           items[value] = value;
@@ -21,7 +21,7 @@
       },
 
       // remove a value from the set if it exists, return true if removed
-      remove: function(value) {
+      remove: function (value) {
         var deleted = false;
         if (this.has(value)) {
           delete items[value];
@@ -31,49 +31,101 @@
       },
 
       // returns true if the value exists in the set
-      has: function(value) {
-        return value in items;
+      has: function (value) {
+        return items.hasOwnProperty(value);
       },
 
       // clear any items in the set by re-assigning items to an empty {}
-      clearSet: function() {
+      clearSet: function () {
         items = {};
       },
 
       // returns the number of items in the set
-      size: function() {
+      size: function () {
         return Object.keys(items).length();
       },
 
       // values returns an array with all values in the set
-      values: function() {
+      values: function () {
         return Object.keys(items);
       },
 
-      //TODO union returns a new set with all items from set and otherSet
-      union: function(otherSet) {
+      // union returns a new set with all items from set and otherSet
+      union: function (otherSet) {
+        var unionSet, values, i;
+
+        unionSet = new Set();
+
+        values = this.values();
+        for (i = 0; i < values.length; i += 1) {
+          unionSet.add(values[i]);
+        }
+
+        values = otherSet.values();
+        for (i = 0; i < values.length; i += 1) {
+          if (!unionSet.has(values[i])) {
+            unionSet.add(values[i]);
+          }
+        }
+
+        return unionSet;
+      },
+
+      // returns items that are in set but not in otherSet
+      difference: function (otherSet) {
+        var diffSet, values, i;
+
+        diffSet = new Set();
+
+        values = this.values();
+        for (i = 0; i < values.length; i += 1) {
+          if (!otherSet.has(values[i])) {
+            diffSet.add(values[i]);
+          }
+        }
+
+        return diffSet;
 
       },
 
-      //TODO returns items that are in set but not in otherSet
-      difference: function(otherSet) {
+      // returns only items in both set and otherSet
+      intersection: function (otherSet) {
+        var interSet, values, i;
+
+        interSet = new Set();
+
+        values = this.values();
+        for (i = 0; i < values.length; i += 1) {
+          if (otherSet.has(values[i])) {
+            interSet.add(values[i]);
+          }
+        }
+
+        return interSet;
 
       },
 
-      //TODO returns only items in both set and otherSet
-      intersection: function(otherSet) {
+      // returns true if set items is completely contained within otherSet
+      subset: function (otherSet) {
+        var allContained, values, i;
 
-      },
+        allContained = true;
+        values = this.values();
+        for (i = 0; i < values.length; i += 1) {
+          if (!otherSet.has(values[i])) {
+            allContained = false;
+          }
+        }
 
-      //TODO returns true if set items is completely contained within otherSet
-      subset: function(otherSet) {
+        return allContained;
 
       }
 
-    }
+    };
   };
 
-  var setA = new Set();
+  setA = new Set();
+
   setA.add('Hi');
   setA.add('Bye');
   setA.add('Nanner');
