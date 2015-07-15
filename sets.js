@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var Set, setA;
+  var Set, setA, setB;
 
   Set = function () {
     var items;
@@ -42,7 +42,7 @@
 
       // returns the number of items in the set
       size: function () {
-        return Object.keys(items).length();
+        return Object.keys(items).length;
       },
 
       // values returns an array with all values in the set
@@ -125,6 +125,7 @@
   };
 
   setA = new Set();
+  setB = new Set();
 
   setA.add('Hi');
   setA.add('Bye');
@@ -132,5 +133,17 @@
   console.log(setA.values());
   setA.remove('Lol');
   setA.remove('Bye');
-  console.log(setA.values());
+  console.log('Set A Values:', setA.values());
+
+  setB.add('Bye');
+  setB.add('Hi');
+  setB.add('Nanner');
+  setB.add('lololoL');
+  console.log('Set B Values:', setB.values());
+  console.log('Union:', setA.union(setB).values());
+  console.log('Intersection:', setA.intersection(setB).values());
+  console.log('Difference:', setB.difference(setA).values());
+  console.log('Subset:', setA.subset(setB));
+  setB.clearSet();
+  console.log('Post Clear:', setB.values());
 }());
