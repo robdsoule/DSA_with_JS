@@ -9,23 +9,35 @@
     items = {};
 
     return {
-      //TODO add a key value pair to the Set
+      // add a key value pair to the Set or update an existing key
       assign: function (key, value) {
+        items[key] = value;
       },
 
-      //TODO returns true if the set has the given key
+      // returns true if the set has the given key
       has: function (key) {
-
+        return items.hasOwnProperty(key);
       },
 
-      //TODO removes the key value pair given returns true if removed
+      // removes the key value pair given returns true if removed
       remove: function (key) {
-
+        var removeStatus = false;
+        if (items.has(key)) {
+          delete items[key];
+          removeStatus = true;
+        }
+        return removeStatus;
       },
 
-      //TODO returns the specific value that matches the key
+      // returns the specific value that matches the key
       retrieve: function (key) {
+        var valueOfKey;
 
+        if (items.has(key)) {
+          valueOfKey = items[key]
+        }
+
+        return valueOfKey;
       },
 
       // resets the set
