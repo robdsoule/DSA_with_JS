@@ -34,7 +34,7 @@
         var valueOfKey;
 
         if (items.has(key)) {
-          valueOfKey = items[key]
+          valueOfKey = items[key];
         }
 
         return valueOfKey;
@@ -50,14 +50,26 @@
         return Object.keys(items).length;
       },
 
-      //TODO returns keys of the set in an array
-      keys: function () {
-
+      // returns keys of the set in an array
+      keyList: function () {
+        return Object.keys(items);
       },
 
-      //TODO returns values of the set in an array
+      // returns values of the set in an array
       values: function () {
+        var valueArray, keyArray, i, len;
 
+        keyArray = this.keyList();
+        len = keyArray.length;
+        valueArray = [];
+
+        for (i = 0; i < len; i += 1) {
+          if (items.hasOwnProperty(keyArray[i])) {
+            valueArray.push(keyArray[i]);
+          }
+        }
+
+        return valueArray;
       }
 
     };
