@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var Dictionary, dicA, dicB;
+  var Dictionary, dicA;
 
   Dictionary = function () {
     var items;
@@ -22,7 +22,7 @@
       // removes the key value pair given returns true if removed
       remove: function (key) {
         var removeStatus = false;
-        if (items.has(key)) {
+        if (this.has(key)) {
           delete items[key];
           removeStatus = true;
         }
@@ -33,7 +33,7 @@
       retrieve: function (key) {
         var valueOfKey;
 
-        if (items.has(key)) {
+        if (this.has(key)) {
           valueOfKey = items[key];
         }
 
@@ -64,15 +64,25 @@
         valueArray = [];
 
         for (i = 0; i < len; i += 1) {
-          if (items.hasOwnProperty(keyArray[i])) {
-            valueArray.push(keyArray[i]);
+          if (this.has(keyArray[i])) {
+            valueArray.push(items[keyArray[i]]);
           }
         }
 
         return valueArray;
       }
-
     };
   };
+
+  // ---------------------------
+  dicA = new Dictionary();
+  dicA.assign('John', 'lolol@hai.org');
+  dicA.assign('Kyle', 'hmmm@yup.io');
+  dicA.assign('Hannah', 'fluffycat@squigglepuff.cut');
+  console.log('Keys:', dicA.keyList());
+  console.log('Values:', dicA.values());
+  console.log('Retrieve Kyle:', dicA.retrieve('Kyle'));
+  console.log('Remove Kyle:', dicA.remove('Kyle'));
+  console.log('Size:', dicA.size());
 
 }());

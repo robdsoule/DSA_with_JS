@@ -107,6 +107,29 @@ Quicksort(arrayA, lengthN)
   recursively sort 1st part
   recursively sort 2nd part
 ```
+#### Partitioning around a Pivot
 
-
+##### In-Place Implementation
+* Assume: pivot = 1st element of array, if not swap pivot <-> 1st element as preprocessing step
+* High Level Idea:
+```
+| p |  <p   | >p  |  ?      ?     |
+    | partitioned | unpartitioned |
+```
+* Single scan through array
+* invariant: everything looked at so far is partitioned
+* Partition Subroutine:
+```
+Partition (A, l, r) [input ~ A[l...r]]
+ p := A[l]
+ i := l + 1
+ for j = l + 1 to r
+   if A[j] < p       //if A[j]>p, do nothing
+     swap A[j] and A[i]
+     i := i + 1
+  swap A[l] and A[i-1]
+```
+* Running Time = O(n), where n = r-l+1 is the length of the input (sub)array.
+* Reason: O(1) work per array entry.
+* Also: clearly works in place (repeated swaps)
 
