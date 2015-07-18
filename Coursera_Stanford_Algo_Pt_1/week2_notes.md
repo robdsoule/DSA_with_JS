@@ -132,3 +132,55 @@ Partition (A, l, r) [input ~ A[l...r]]
 * Reason: O(1) work per array entry.
 * Also: clearly works in place (repeated swaps)
 
+##### Importance of the Pivot
+* Question: running time of Quicksort?
+* Answer: depends on the quality of the pivot.
+* Suppose Quicksort always selects first element of the array.  What is the running time of this algorithm on an input array that is already sorted?
+  - O(n^2)
+  - Reason: Only one recursive call on a size of 1 less. (2...n) then (3...n) then (4...n) etc.
+  - Runtime: >= n + (n-1) + (n-2) ..... + 1 = O(n^2)
+
+* Suppose Quicksort selects the median of the array for the pivot.
+  - O(n*log(n))
+  - T(n) <= 2T(n/2) + O(n)
+  - => T(n)= O(nlogn) [Like mergesort]
+
+##### How to Choose Random Pivots
+* Key Question: How to choose pivots?? Big Idea: Random Pivots!
+* In every recursive call, choose the pivot randomly. (each element equally likely)
+* Hope: a random pivot is 'pretty good' 'often enough'.
+* Intuition:
+  1) if always get a 25-75 split, good enough for O(nlogn) running time
+  2) half of elements give a 25-75 split or better
+
+#### Average Running Time of QuickSort
+* Quicksort Theorem: for every input array of length n, the average running time of Quicksort (with random pivots) is O(nlog(n))
+* Note: holds for -every- input. [no assumptions on the data]
+  - "average" is over random choices made by the algorithm (i.e. pivot choices)
+
+Fix input array A of length n
+* Sample Space Omega = all possible outcomes of random choices in Quicksort (ie, pivot sequences)
+* Key Random variable:
+  - C(a) = # of comparisons between two input elements made by Quicksort (given random choices a)
+* Remaining Goal: E[C] = O(n logn)
+  - Note: Can't apply MasterMethod (random unbalanced subproblems)
+  - [A = fixed input array]
+  - Notation: Z.i = i^th smallest element of A
+```
+  [ 6 ,  8 ,  10,  2 ]
+  [Z.2, Z.3, Z.4, Z.1]
+
+For a element Omega, indices i < j, let
+  X.ij(a) = # of times Z.i, Z.j get compared in Quicksort with pivot sequence a
+```
+
+###### Proof Of Key Claim
+* Fix Z.i, Z.j with i < j
+* Consider the set Z.i, Z.i+1,...,Z.j-1, Z.j
+* Inductively: as long as none of these are chosen as a pivot, all are passed to the same recursive call.
+* Consider the first among this set that gets chosen as a pivot
+  - if Z.i or Z.j gets chosen first, then Z.i and Z.j get compared
+  - if one of Z.i+1,...,Z.j-1 gets chosen first, then Z.i & Z.j are ->NEVER<- compared [split into different recursive calls]
+  - Note: since pivots always chosen uniformly at random, each of the set is equally likely to be the first
+  - => Pr[Z.i, Z.j get compared] = 2 / (j-i + 1)
+
