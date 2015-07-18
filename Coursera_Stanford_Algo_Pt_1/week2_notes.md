@@ -23,7 +23,6 @@
   - b = input size shrinkage factor ( > 1)
   - d = exponent in running time of "combine step" (>= 0)
   - a, b, d are independent of n
-
 ```
        { O(n^d * log(n))  }    if a = b^d (case 1)
 T(n) = { O(n^d)           }    if a < b^d (case 2)
