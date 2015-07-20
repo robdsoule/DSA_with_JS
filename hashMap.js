@@ -11,6 +11,7 @@
     table = [];
     // private method: loseLoseHashCode(key) takes the key value and adds
     // the character value of each character in the key up and sets hash
+    // note: loseLose is a horrible hash function
     loseLoseHashCode = function (key) {
       var hash, i, len;
       len = key.length;
@@ -27,6 +28,7 @@
 
     return {
       // put(key, value) adds a new item to the hash table(or update it)
+      // modified to account for multiple values with separate chaining
       put: function (key, value) {
         var position;
         position = loseLoseHashCode(key);
