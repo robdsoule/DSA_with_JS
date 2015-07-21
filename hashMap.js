@@ -88,8 +88,6 @@
         return theElement;
       },
 
-      //TODO handle collisions / multiple same hash values
-
       // print method prints all non undefined values to console
       print: function (optionalMsg) {
         var i, len;
