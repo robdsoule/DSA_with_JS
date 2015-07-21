@@ -1,7 +1,13 @@
 (function () {
   "use strict";
 
-  function LinkedList() {
+  var exports,
+    LinkedList,
+    aLinkedList,
+    anotherLinkedList;
+
+  exports = module.exports = {};
+  exports.LinkedList = function () {
     var length, head, Node;
 
     length = 0;
@@ -67,6 +73,7 @@
         // set removedElement for a singular return statement, edit length to
         // account for removed element
         removedElement = current.element;
+        current.element = undefined;
       } else {
         removedElement = null;
       }
@@ -119,25 +126,25 @@
       return eleInserted;
     };
 
-    this.toString = function () {
+    // warning: modified while playing around with exporting and importing modules
+    // for hashMap.js file
+    this.toStringT = function () {
       var current, output, incr;
       output = '';
       incr = 0;
 
       if (head === null) {
-        output += 'NULL';
       } else {
         current = head;
         while (current.next) {
           incr += 1;
-          output += 'Item ' + incr + ': ' + current.element + '\n';
+          output += 'Item ' + incr + ': ' + current.element.value + ' -- ';
           current = current.next;
         }
         incr += 1;
-        output += 'Item ' + incr + ': ' + current.element;
+        output += 'Item ' + incr + ': ' + current.element.value;
       }
 
-      output += '\n---------\nEnd List';
       return output.trim();
     };
 
@@ -148,20 +155,24 @@
 
       // very similar logic as used in insert, but just simply is keeping track
       // of index position and returning it
-      if (element === head.element) {
+      if (element === head.element.key) {
         indexCount = 0;
         eleFound = true;
       } else {
         current = head;
         while (current && !eleFound) {
           indexCount += 1;
-          if (current.element === element) {
+          if (current.element.key === element) {
             eleFound = true;
           }
           current = current.next;
         }
       }
 
+      if (eleFound === false) {
+        indexCount = undefined;
+      }
+      // console.log('Index Count: ', indexCount);
       return indexCount;
     };
 
@@ -173,24 +184,24 @@
       return length;
     };
 
-  }
+  };
 
-  var aLinkedList = new LinkedList(),
-    anotherLinkedList = new LinkedList();
-
-  anotherLinkedList.insert('Doot0', 0);
-  anotherLinkedList.insert('Doots', 1);
-  console.log(anotherLinkedList.toString());
-
-  aLinkedList.append('Item1');
-  aLinkedList.append('Item2');
-  aLinkedList.append('Item3');
-  aLinkedList.insert('Nanner', 0);
-  console.log(aLinkedList.getHead());
-  console.log('Index of Nanner:', aLinkedList.indexOf('Nanner'));
-  console.log('Index of Item2:', aLinkedList.indexOf('Item2'));
-  console.log('Index of Item 4:', aLinkedList.indexOf('Item4'));
-  aLinkedList.removeAt(2);
-  console.log(aLinkedList.toString());
-  console.log(aLinkedList);
+  //aLinkedList = new LinkedList();
+  //anotherLinkedList = new LinkedList();
+  //
+  //anotherLinkedList.insert('Doot0', 0);
+  //anotherLinkedList.insert('Doots', 1);
+  //console.log(anotherLinkedList.toString());
+  //
+  //aLinkedList.append('Item1');
+  //aLinkedList.append('Item2');
+  //aLinkedList.append('Item3');
+  //aLinkedList.insert('Nanner', 0);
+  //console.log(aLinkedList.getHead());
+  //console.log('Index of Nanner:', aLinkedList.indexOf('Nanner'));
+  //console.log('Index of Item2:', aLinkedList.indexOf('Item2'));
+  //console.log('Index of Item 4:', aLinkedList.indexOf('Item4'));
+  //aLinkedList.removeAt(2);
+  //console.log(aLinkedList.toString());
+  //console.log(aLinkedList);
 }());

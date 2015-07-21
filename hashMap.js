@@ -1,13 +1,12 @@
 (function () {
   "use strict";
-
-  var Hash, hash1;
-
+  var LL = require("./linked_lists"),
+    Hash,
+    hash1;
 
   Hash = function () {
-    var loseLoseHashCode, table, length;
+    var ValuePair, loseLoseHashCode, table;
 
-    length = 0;
     table = [];
     // private method: loseLoseHashCode(key) takes the key value and adds
     // the character value of each character in the key up and sets hash
@@ -26,44 +25,83 @@
       return hash % 37;
     };
 
+    ValuePair = function (key, value) {
+      return {
+        key: key,
+        value: value
+      };
+    };
+
     return {
       // put(key, value) adds a new item to the hash table(or update it)
       // modified to account for multiple values with separate chaining
       put: function (key, value) {
-        var position;
+        var position, newElement;
+
+        newElement = new ValuePair(key, value);
         position = loseLoseHashCode(key);
-        table[position] = value;
-        length += 1;
-        return table;
+
+        if (table[position] === undefined) {
+          table[position] = new LL.LinkedList();
+        }
+        table[position].append(newElement);
+        return newElement;
       },
 
       // remove(key) removes the value from the hash table using the key
       remove: function (key) {
-        var position;
+        var position, indexNum;
+
         position = loseLoseHashCode(key);
+
         if (table[position] !== undefined) {
+          indexNum = table[position].indexOf(key);
+          if (indexNum !== undefined) {
+            table[position].removeAt(indexNum);
+          }
+        }
+        if (table[position].size() === 0) {
           table[position] = undefined;
-          length -= 1;
         }
       },
 
       // get(key) returns a specific value searched by the key
       get: function (key) {
-        var position;
+        var position, current, theElement;
+
         position = loseLoseHashCode(key);
-        return table[position];
+
+        if (table[position] !== undefined) {
+          current = table[position].getHead();
+
+          while (current.next && theElement === undefined) {
+            if (current.element.key === key) {
+              theElement = current.element.value;
+            }
+            current = current.next;
+          }
+
+          if (current.element.key === key && theElement === undefined) {
+            theElement = current.element.value;
+          }
+        }
+        return theElement;
       },
 
       //TODO handle collisions / multiple same hash values
 
       // print method prints all non undefined values to console
-      print: function () {
+      print: function (optionalMsg) {
         var i, len;
         len = table.length;
 
+        if (optionalMsg) {
+          console.log(optionalMsg);
+        }
+
         for (i = 0; i < len; i += 1) {
           if (table[i] !== undefined) {
-            console.log(i + ": " + table[i]);
+            console.log(i + ": " + table[i].toStringT());
           }
         }
       }
@@ -72,14 +110,15 @@
   };
 
   hash1 = new Hash();
-  hash1.put("Nanner", "Nanner1");
+  console.log(hash1.put("Nanner", "Nanner1"));
   hash1.put("Loller3", "baller");
+  hash1.put("nhoJ", "roflShirt");
   hash1.put("John", "snowyPants");
   hash1.put("Roofle", "Goofle");
-  console.log('Post Addition: ', hash1.get("Loller3"));
-  console.log('Pre Remove: ');
-  hash1.print();
+  console.log('Post Addition: ', hash1.get("nhoJ"));
+  hash1.print('Pre Remove:');
   hash1.remove("Nanner");
-  console.log('After Remove: ');
-  hash1.print();
+  hash1.print('After Remove:');
+  hash1.remove("nhoJ");
+  hash1.print('After 2nd Remove:');
 }());
