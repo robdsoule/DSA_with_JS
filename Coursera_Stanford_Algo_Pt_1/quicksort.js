@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var fs = require('fs'),
+  var fs,
     parseTXTnumList,
     firstElementPivot,
     lastElementPivot,
@@ -12,6 +12,8 @@
     comparisonCount,
     array2;
     //array1
+
+  fs = require('fs');
 
   parseTXTnumList = function (fileName, splitRegEx) {
     var outArray;
