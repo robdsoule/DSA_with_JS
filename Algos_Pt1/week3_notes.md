@@ -162,7 +162,10 @@ Let T.i = event that the cut (A,B) is found on the i`th try
   => by definition, different T.i's are independent
 
 Probability by running independent random = 1/n
-Trials needed: (1-(1/n^2))^n
+-----------------------------------------
+-->>> Trials needed: O(n^2 * log n) <<<--
+-----------------------------------------
+Claim: Using adjacency matrices, it's possible to run Karger's algorithm once in time O(n^2)
 
 Running time: polynomial in n and m but slow Omega(n^2 m)
   But: can get big speedups to roughly O(n^2) with more ideas
